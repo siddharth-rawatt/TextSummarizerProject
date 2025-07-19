@@ -1,1 +1,13 @@
-key: value
+TrainingArguments:
+  num_train_epochs: 1                # Only 1 epoch — fastest
+  warmup_steps: 5                   # Quick warmup
+  per_device_train_batch_size: 1    # Minimal batch
+  per_device_eval_batch_size: 1     # Small eval batch
+  weight_decay: 0.01
+  logging_steps: 5
+  eval_strategy: steps              # Evaluate during training
+  eval_steps: 10                    # Evaluate every 10 steps
+  save_steps: 1000                  # Don’t save too often
+  gradient_accumulation_steps: 1    # No accumulation — purest small batch
+  fp16: false                       # Don’t use mixed precision (MPS can't)
+  dataloader_num_workers: 0         # Avoids multithread issues on Mac
